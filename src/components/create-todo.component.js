@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class CreateTodo extends Component {
+
     constructor(props) {
         super(props);
 
@@ -8,7 +10,6 @@ export default class CreateTodo extends Component {
         this.onChangeTodoResponsible = this.onChangeTodoResponsible.bind(this);
         this.onChangeTodoPriority = this.onChangeTodoPriority.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-
 
         this.state = {
             todo_description: '',
@@ -45,7 +46,15 @@ export default class CreateTodo extends Component {
         console.log(`Todo Description: ${this.state.todo_priority}`);
         console.log(`Todo Completed: ${this.state.todo_completed}`);
 
+        const newTodo = {
+            todo_description: this.state.todo_description,
+            todo_responsible: this.state.todo_responsible,
+            todo_priority: this.state.todo_priority,
+            todo_completed: this.state.todo_completed,
+        }
 
+        axios.post('http://localhost:4000/todos/add', newTodo)
+            .then(res => console.log(res.data));
 
         this.setState({
             todo_description: '',
