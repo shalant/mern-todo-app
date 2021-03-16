@@ -70,7 +70,7 @@ export default class CreateTodo extends Component {
                 <h3>Create New Todo</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className='form-group'>
-                        <label>Description</label>
+                        <label>Description: </label>
                         <input  type='text'
                                 className='form-control'
                                 value={this.state.todo_description}
@@ -78,7 +78,7 @@ export default class CreateTodo extends Component {
                         />
                     </div>
                     <div className='form-group'>
-                        <label>Responsible</label>
+                        <label>Responsible: </label>
                         <input  type='text'
                                 className='form-control'
                                 value={this.state.todo_responsible}

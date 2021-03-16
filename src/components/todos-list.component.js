@@ -21,7 +21,7 @@ export default class TodosList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/todos')
+        axios.get('http://localhost:4000/todos/')
             .then(response => {
                 this.setState({todos: response.data})
             })
@@ -30,7 +30,17 @@ export default class TodosList extends Component {
             });
     }
 
-    TodoList() {
+    componentDidUpdate() {
+        axios.get('http://localhost:4000/todos/')
+            .then(response => {
+                this.setState({todos: response.data})
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    todoList() {
         return this.state.todos.map(function(currentTodo, i) {
             return <Todo todo={currentTodo} key={i} />
         });
@@ -50,7 +60,7 @@ export default class TodosList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { this.TodoList() }
+                        { this.todoList() }
                     </tbody>
                 </table>
             </div>
